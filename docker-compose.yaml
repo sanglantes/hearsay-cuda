@@ -1,0 +1,38 @@
+services:
+  hearsay:
+    build: ./bot
+    image: hearsay-bot
+    volumes:
+      - ./bot/data:/app/data
+    command: ./hearsay
+    init: true
+    restart: on-failure:2
+    environment:
+      - TZ=Europe/Stockholm
+    depends_on:
+      - api
+    networks:
+      - hearsay-net
+
+  api:
+    build: ./api
+    image: hearsay-api
+    command: sh -c "PYTHONPATH=./app_python uvicorn app_python.main:app --host 0.0.0.0 --port 8111 --workers 2"
+    volumes:
+      - ./bot/data:/app/data
+    restart: no
+    networks:
+      - hearsay-net
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+
+networks:
+  hearsay-net:

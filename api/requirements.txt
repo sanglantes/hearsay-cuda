@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+textstat
+scikit-learn
+matplotlib
+requests
+vaderSentiment
+sentence-transformers

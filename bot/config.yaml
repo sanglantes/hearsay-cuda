@@ -1,0 +1,17 @@
+bot:
+  prefix: "+"
+  mode: "+B"
+  server: "192.168.10.137:6697"
+  channel: "#antisocial"
+
+storage:
+  message_pool_size: 20
+  message_quota: 1000
+  people_quota: 5
+
+scheduler:
+  deletion_days: 1
+
+model:
+  bert: true
+  gpu: true
