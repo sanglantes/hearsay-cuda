@@ -1,5 +1,5 @@
 # hearsay
-An authorship attribution and NLP bot for IRC. Built in Go (1.24.4) and Python 3.
+An authorship attribution and NLP bot for IRC. Built in Go and Python 3. Now with GPU support when using BERT word embeddings.
 
 ## Table of Contents
 - [Features](#features)
